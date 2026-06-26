@@ -1,0 +1,307 @@
+/* ==========================================================================
+   Sanjay Group Security — Design Tokens
+   Palette: Ink (deep navy), Steel (panel), Fog (light bg), Slate (muted),
+            Beacon (amber accent — vigilance/badge), Alert (reserved, incidents)
+   Type: Oswald (display, condensed authority) + Source Sans 3 (body) +
+         JetBrains Mono (data/labels — stats, response times, badge codes)
+   Signature: viewfinder corner-brackets + dashed perimeter rule + scanline
+   ========================================================================== */
+
+:root {
+  --ink: #0e1a2b;
+  --ink-soft: #142336;
+  --steel: #1b2a3d;
+  --steel-soft: #24364c;
+  --fog: #f4f6f8;
+  --fog-dim: #e8ebee;
+  --slate: #5c6b7a;
+  --slate-soft: #8a96a3;
+  --beacon: #d6a23b;
+  --beacon-soft: #e8c87a;
+  --alert: #b23a3a;
+  --white: #ffffff;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  --radius: 2px;
+  --container-max: 1180px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--fog);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .display-font {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--beacon);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--beacon);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(214, 162, 59, 0.6);
+  animation: pulse-dot 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow::before { animation: none; }
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(214, 162, 59, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(214, 162, 59, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(214, 162, 59, 0); }
+}
+
+a {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.text-beacon { color: var(--beacon); }
+.bg-ink { background-color: var(--ink); }
+.bg-steel { background-color: var(--steel); }
+
+/* --------------------------------------------------------------------- */
+/* Buttons — badge-like, squared, condensed                              */
+/* --------------------------------------------------------------------- */
+
+.btn-beacon {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.6rem;
+  background-color: var(--beacon);
+  border: 1px solid var(--beacon);
+  color: var(--ink);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-beacon:hover {
+  background-color: transparent;
+  color: var(--beacon);
+}
+
+.btn-outline-fog {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.6rem;
+  background-color: transparent;
+  border: 1px solid rgba(244, 246, 248, 0.4);
+  color: var(--fog);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-outline-fog:hover {
+  border-color: var(--fog);
+  background-color: rgba(244, 246, 248, 0.08);
+  color: var(--fog);
+}
+
+/* --------------------------------------------------------------------- */
+/* Signature: viewfinder corner brackets                                 */
+/* --------------------------------------------------------------------- */
+
+.viewfinder {
+  position: relative;
+  padding: 2.5rem;
+}
+
+.viewfinder::before,
+.viewfinder::after,
+.viewfinder span.vf-tr,
+.viewfinder span.vf-br {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--beacon);
+}
+
+.viewfinder::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.viewfinder::after { bottom: 0; left: 0; border-right: none; border-top: none; }
+.viewfinder span.vf-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.viewfinder span.vf-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* --------------------------------------------------------------------- */
+/* Signature: dashed perimeter divider                                   */
+/* --------------------------------------------------------------------- */
+
+.perimeter-rule {
+  border: none;
+  border-top: 2px dashed var(--slate-soft);
+  opacity: 0.5;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------- */
+/* Hero scanline sweep                                                   */
+/* --------------------------------------------------------------------- */
+
+.scan-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.scan-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(214, 162, 59, 0.18),
+    transparent
+  );
+  animation: sweep 5.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-frame::after { animation: none; display: none; }
+}
+
+@keyframes sweep {
+  0% { left: -40%; }
+  100% { left: 130%; }
+}
+
+/* --------------------------------------------------------------------- */
+/* Layout helpers                                                        */
+/* --------------------------------------------------------------------- */
+
+.section {
+  padding: 5.5rem 0;
+}
+
+.section-sm {
+  padding: 3.5rem 0;
+}
+
+.container-narrow {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-figure {
+  font-family: var(--font-mono);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--beacon);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-soft);
+}
+
+/* --------------------------------------------------------------------- */
+/* Service card                                                          */
+/* --------------------------------------------------------------------- */
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--fog-dim);
+  border-top: 3px solid transparent;
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  height: 100%;
+  transition: border-top-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  border-top-color: var(--beacon);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -20px rgba(14, 26, 43, 0.35);
+}
+
+.service-card .service-icon {
+  font-size: 1.8rem;
+  color: var(--beacon);
+  margin-bottom: 1.1rem;
+}
+
+.service-card .service-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--slate-soft);
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------- */
+/* Focus visibility (accessibility floor)                                */
+/* --------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--beacon);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------- */
+/* Forms                                                                 */
+/* --------------------------------------------------------------------- */
+
+.form-control, .form-select {
+  border-radius: var(--radius);
+  border: 1px solid var(--fog-dim);
+  padding: 0.7rem 0.9rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--beacon);
+  box-shadow: 0 0 0 3px rgba(214, 162, 59, 0.18);
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.4rem;
+}
