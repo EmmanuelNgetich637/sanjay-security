@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Sanjay Group Security — Admin Console
+   Extends the public-site tokens (ink/steel/fog/slate/beacon) defined in
+   src/styles/custom.css, shifted into a denser, data-first console layout.
+   ========================================================================== */
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--fog);
+}
+
+/* --------------------------------------------------------------------- */
+/* Sidebar                                                               */
+/* --------------------------------------------------------------------- */
+
+.admin-sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--fog);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(244, 246, 248, 0.08);
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  flex-grow: 1;
+}
+
+.admin-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  color: var(--slate-soft);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  border-left: 3px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-sidebar__link:hover {
+  background: rgba(244, 246, 248, 0.04);
+  color: var(--fog);
+}
+
+.admin-sidebar__link.is-active {
+  color: var(--beacon);
+  border-left-color: var(--beacon);
+  background: rgba(214, 162, 59, 0.08);
+}
+
+.admin-sidebar__footer {
+  padding: 1.25rem;
+  border-top: 1px solid rgba(244, 246, 248, 0.08);
+}
+
+/* --------------------------------------------------------------------- */
+/* Header                                                                */
+/* --------------------------------------------------------------------- */
+
+.admin-shell__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--fog-dim);
+}
+
+.admin-header__status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-header__clock {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
+.admin-header__user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-header__user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.admin-header__name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+
+.admin-header__role {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--slate-soft);
+}
+
+.admin-header__logout {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 1px solid var(--fog-dim);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.admin-header__logout:hover {
+  border-color: var(--alert);
+  color: var(--alert);
+}
+
+/* --------------------------------------------------------------------- */
+/* Content area                                                         */
+/* --------------------------------------------------------------------- */
+
+.admin-shell__content {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+.admin-stat-card {
+  background: var(--white);
+  border: 1px solid var(--fog-dim);
+  border-top: 3px solid var(--beacon);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.admin-panel {
+  background: var(--white);
+  border: 1px solid var(--fog-dim);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-panel__title {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table thead th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate-soft);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--fog-dim);
+}
+
+.admin-table tbody td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid var(--fog-dim);
+  color: var(--ink);
+}
+
+.admin-table__empty {
+  text-align: center;
+  color: var(--slate-soft);
+  padding: 1.5rem;
+}
+
+.status-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.status-pill--beacon {
+  background: rgba(214, 162, 59, 0.14);
+  color: var(--beacon);
+}
+
+.status-pill--slate {
+  background: rgba(92, 107, 122, 0.12);
+  color: var(--slate);
+}
+
+/* --------------------------------------------------------------------- */
+/* Login screen                                                         */
+/* --------------------------------------------------------------------- */
+
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  padding: 1.5rem;
+}
+
+.admin-login__panel {
+  background: var(--steel);
+  border-radius: var(--radius);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+.admin-login__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 1.5rem;
+}
+
+.admin-login__title {
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-login .form-label {
+  color: var(--slate-soft);
+}
+
+.admin-login__error {
+  color: var(--alert);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------- */
+/* Loading / error states                                               */
+/* --------------------------------------------------------------------- */
+
+.admin-loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+}
+
+.admin-loading-text,
+.admin-error-text {
+  font-family: var(--font-mono);
+  color: var(--slate);
+  padding: 2rem;
+}
+
+.admin-error-text {
+  color: var(--alert);
+}
